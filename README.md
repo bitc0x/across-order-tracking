@@ -92,6 +92,41 @@ Returns unified state across both legs. First call after a stale TTL triggers up
 }
 ```
 
+## Quickstart
+
+Test the live API in 30 seconds with one historical filled order:
+
+```bash
+BASE=https://across-order-tracking.vercel.app
+HASH=0xa193327025ccf94a06a632e49e4b899c143066d55f1baf4d179d51839ca585e0
+
+# 1. Register the order (idempotent — safe to re-run)
+curl -X POST "$BASE/api/order/submit" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"strategy\": \"fusion-same-chain\",
+    \"orderHash\": \"$HASH\",
+    \"originChainId\": 10,
+    \"destinationChainId\": 1,
+    \"depositId\": \"3685984\",
+    \"depositTxHash\": \"0x59f2db787e36627a363c1012044d52b3bf1bab6276530c2a2bd421b73b653330\",
+    \"userAddress\": \"0xd48010de315e10d071853b1466f0c273e766fa07\",
+    \"expectedDeliveryAmount\": \"17618193350299789\"
+  }"
+
+# 2. Fetch unified status (first call lazily polls upstream; subsequent
+#    calls within 5s return cached state)
+curl "$BASE/api/order/status/$HASH"
+```
+
+You should see `state: "destination_filled"` and both `bridge.fillTxHash` and `destination.fillTxHash` populated.
+
+## Integration notes
+
+- **CORS**: wildcard origin. The API is callable directly from any integrator frontend without preflight failures. `Access-Control-Allow-Origin: *`, `Methods: GET, POST, OPTIONS`, `Headers: Content-Type, Authorization`, `Max-Age: 86400` (so the preflight result caches for 24h). No `Allow-Credentials` (incompatible with wildcard origin anyway).
+- **Auth**: none in v1 — public-write API. The cost of a malicious POST is low (it just registers an order to track). API-key gating belongs at a future auth layer if/when this gets multi-tenant.
+- **Rate limits**: none currently. The lazy-poll-on-GET architecture means upstream pressure scales to integrator query interest rather than running idle work.
+
 ## Adding a new destination strategy
 
 The state machine and store are strategy-agnostic. To add CoW, Hashflow, or Fusion+:
