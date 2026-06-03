@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-900: #0a0a0b;
+  --bg-800: #111114;
+  --bg-700: #18181c;
+  --cream-50: #f5f3ed;
+  --cream-100: #e8e4d8;
+  --cream-200: #d4cfbf;
+  --cream-300: #b8b2a0;
+  --cream-400: #8e887a;
+  --cream-500: #6b6557;
+  --gold-300: #e8c574;
+  --gold-400: #d4a843;
+  --gold-500: #b8902f;
+}
+
+html, body { background: var(--bg-900); color: var(--cream-100); }
+body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Inter, sans-serif; }
+.tabular { font-variant-numeric: tabular-nums; }
+.serif { font-family: Georgia, ui-serif, serif; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.gold-text { color: var(--gold-400); }
+.cream-50 { color: var(--cream-50); }
+.cream-200 { color: var(--cream-200); }
+.cream-300 { color: var(--cream-300); }
+.cream-400 { color: var(--cream-400); }
+.cream-500 { color: var(--cream-500); }
+.bg-card { background: var(--bg-800); border: 1px solid rgba(255,255,255,0.06); }
+.bg-deep { background: var(--bg-700); border: 1px solid rgba(255,255,255,0.04); }
