@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@1inch/fusion-sdk": "^2.3.6",
-    "@vercel/kv": "^3.0.0",
+    "@upstash/redis": "^1.38.0",
     "axios": "^1.17.0",
     "next": "^16.0.0",
     "react": "^19.0.0",

@@ -106,14 +106,14 @@ No state machine changes needed — every strategy normalizes to the same `Desti
 
 ```bash
 npm install
-cp .env.example .env.local   # fill in DEV_PORTAL_API_TOKEN, KV_REST_API_URL, KV_REST_API_TOKEN, CRON_SECRET
+cp .env.example .env.local   # fill in DEV_PORTAL_API_TOKEN, UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN, CRON_SECRET
 npm run dev
 ```
 
 ## Deployment
 
 1. Push to GitHub, import into Vercel.
-2. Provision Vercel KV (Storage tab → Create → KV) — sets `KV_*` env vars automatically.
+2. Provision Upstash Redis: Storage tab → Browse Marketplace → "Upstash for Redis" → connect to project. Auto-injects `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` (or `KV_REST_API_*` for migrated stores — both supported).
 3. Add `DEV_PORTAL_API_TOKEN` (1inch dev portal key, same as the PoC uses).
 4. Add `CRON_SECRET` (any random ≥32-char string).
 5. Deploy. The `vercel.json` cron entry registers the daily sweep automatically.
