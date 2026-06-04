@@ -43,8 +43,7 @@ export default function Home() {
         <p className="cream-300 max-w-3xl text-base md:text-lg leading-relaxed">
           A small API the integrator calls on order submit, then polls for unified
           bridge + destination status with recovery semantics. Solves the operational
-          half of direct destination-protocol integrations &mdash; the half end-users
-          never see, but engineering and ops feel every day.
+          half of direct destination-protocol integrations.
         </p>
         
       </section>
