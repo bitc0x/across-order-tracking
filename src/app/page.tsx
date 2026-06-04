@@ -46,10 +46,7 @@ export default function Home() {
           half of direct destination-protocol integrations &mdash; the half end-users
           never see, but engineering and ops feel every day.
         </p>
-        <div className="mt-6 inline-flex items-center gap-2 text-xs cream-400 bg-card rounded-full px-3 py-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
-          v1 ships 1inch Fusion. CoW, Hashflow, Fusion+ drop into the same adapter shape.
-        </div>
+        
       </section>
 
       {/* The ask we're answering */}
@@ -62,9 +59,7 @@ export default function Home() {
             &ldquo;We would ideally want Across to handle the async states. And refunds
             in case of issues.&rdquo;
           </blockquote>
-          <div className="text-xs cream-500 mt-3">
-            &mdash; ether.fi, on direct Fusion / Paxos integration scoping
-          </div>
+          
         </div>
       </section>
 
